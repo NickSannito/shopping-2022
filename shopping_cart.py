@@ -1,6 +1,7 @@
 
 #code adapted from in-class shopping_cart.py
 
+
 products = [
     {
         "id":1,
@@ -75,7 +76,13 @@ for selected_id in selected_ids:
         total_price = total_price + matching_product["price"]
         print("... " + matching_product["name"] + " " + "(" + str(to_usd(matching_product["price"]) + ")"))
 
-tax = total_price * 0.0875
+
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+tax = total_price * TAX_RATE
 print("> SUBTOTAL: " + str(to_usd(total_price)))
 print("> TAX: " + str(to_usd(tax)))
 print("> TOTAL: " + str(to_usd(tax + total_price)))
