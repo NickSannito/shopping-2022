@@ -1,5 +1,7 @@
 python-dotenv
 
+pandas
+
 #sendgrid==6.6.0
 
 #gspread==3.6.0

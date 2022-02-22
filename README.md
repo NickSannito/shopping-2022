@@ -54,3 +54,12 @@ TAX_RATE = 0.075
 - Place your '.env' file in this directory with the rest of the shopping-2022 associated files
 
 - If no custom tax rate is entered, a rate of 8.75 will be used as default 
+
+
+## Integrating with CSV File Datastore
+
+- In this repo, there is a file in the 'data' folder called 'default_products.csv'. 
+
+- Make a copy of the 'default_products.csv' and call the copy 'products.csv'.
+
+- Now, if you'd like to edit the products that the shopping cart app is able to handle, you can do so locally via the 'products.csv' file. 
