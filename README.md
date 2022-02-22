@@ -63,3 +63,27 @@ TAX_RATE = 0.075
 - Make a copy of the 'default_products.csv' and call the copy 'products.csv'.
 
 - Now, if you'd like to edit the products that the shopping cart app is able to handle, you can do so locally via the 'products.csv' file. 
+
+## Emailing Receipts 
+
+**adapted from Prof. Rosetti's ReadME
+- First, sign up for a SendGrid account at this site: https://signup.sendgrid.com/
+
+- Then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account. You should also be able to access this via the settings menu. 
+
+- Then create a SendGrid API Key with "full access" permissions. We'll want to store the API Key value in an environment variable called ```SENDGRID_API_KEY```
+
+- Also set an environment variable called ```SENDER_ADDRESS``` to be the same email address as the single sender address you just associated with your SendGrid account.
+
+- Once your SendGrid has been setup, when you run the app, you will have the option to send the customer an email 
+
+- To send an email, type 'yes' when prompted
+
+- After the customer's email address has been imputed, an email copy of the receipt should be sent. 
+
+
+
+
+
+
+ 

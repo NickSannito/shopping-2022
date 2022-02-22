@@ -148,43 +148,56 @@ print("> ---------------------------------")
 
 
 #email
+email_choice = input("Do you want your receipt to be emailed to you? Please indicate 'yes' or 'no': ")
+email_choice.lower()
 
-#email_choice = input("Do you want your receipt to be emailed to you? Please indicate 'yes' or 'no': ")
-#email_choice.lower()
-#
-#if email_choice == "yes": 
-#    user_email = input("Please type the customer's email address: ")
-#    SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OPPS, please set env var called 'SENDGRID_API_KEY'")
-#    SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
-#
-#    client = SendGridAPIClient(SENDGRID_API_KEY)
-#
-#    subject = "Your Receipt from the Green Grocery Store"
-#
-#    html_content = ""
-#
-#    html_content += "---------------------------------<br>"
-#
-#    for selected_id in selected_ids:
-#        matching_products = [p for p in googlesheets_products if str(p["id"]) == str(selected_id)]
-#        matching_product = matching_products[0]
-#        html_content += " ... " + matching_product["name"] + " (" + to_usd(matching_product["price"]) + ")<br>"
-#
-#    html_content += "---------------------------------<br>"
-#
-#    message = Mail(
-#        from_email=SENDER_ADDRESS,
-#        to_emails=user_email,
-#        subject=subject,
-#        html_content=html_content)
-#    
-#    try:
-#        response = client.send(message)
-#        if str(response.status.code) == "202":
-#            print("Email to", user_email, "has been sent.")
-#    
-#    except Exception as err: 
-#        print(type(err))
-#        print(err)
-#    
-#    print("")
+if email_choice == "yes": 
+    user_email = input("Please type the customer's email address: ")
+    api_key = os.getenv("SENDGRID_API_KEY", default="OPPS, please set env var called 'SENDGRID_API_KEY'")
+    sender_address = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+
+    client = SendGridAPIClient(api_key)
+
+    subject = "Your Receipt from the Nick's Grocery Store"
+
+    html_content = ""
+
+    html_content += "---------------------------------<br>"
+    html_content += "NICK'S GROCERY<br>"
+    html_content += "WWW.NICKSGROCERY.COM<br>"
+    html_content += "---------------------------------<br>"
+    html_content += "---------------------------------<br>"
+
+    html_content += "CHECKOUT AT: " + date_time + "<br>"
+    html_content += "---------------------------------<br>"
+    html_content += "SELECTED PRODUCTS:<br>"
+
+    for selected_id in selected_ids:
+        matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+        matching_product = matching_products[0]
+        html_content += " ... " + matching_product["name"] + " (" + to_usd(matching_product["price"]) + ")<br>"
+
+
+    tax_rate = float(os.getenv("TAX_RATE", default="0.0875"))
+    tax = total_price * tax_rate
+    html_content += "SUBTOTAL: " + str(to_usd(total_price))+"<br>"
+    html_content += "TAX: " + str(to_usd(tax))+"<br>"
+    html_content += "TOTAL: " + str(to_usd(tax + total_price))+"<br>"
+    html_content += "---------------------------------"+"<br>"
+    html_content += "THANKS, SEE YOU AGAIN SOON!"+"<br>"
+    html_content += "---------------------------------<br>"
+
+    message = Mail(
+        from_email=sender_address,
+        to_emails=user_email,
+        subject=subject,
+        html_content=html_content)
+    
+    try:
+        response = client.send(message)
+    
+    except Exception as err: 
+        print(type(err))
+        print(err)
+    
+    print("Thank you!")
