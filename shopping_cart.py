@@ -1,6 +1,8 @@
 
 #code adapted from in-class shopping_cart.py
 
+#worked with Krish Sarawgi 
+
 import os
 from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
@@ -85,7 +87,7 @@ def to_usd(my_price):
 
 print("Hi! Please select the items you've scanned to generate a receipt. When you've finished, type 'done'. ")
 
-print("-----------------------------------------------------------------------------------------------------")
+print("---------------------------------")
 
 total_price = 0 
 selected_ids = []
@@ -96,7 +98,7 @@ for product in products:
 
 while True:
     selected_id = input("Please input a product identifier: ")
-    
+
     if selected_id.lower() == "done":
         break
     elif selected_id in valid_ids:
