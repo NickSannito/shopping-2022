@@ -147,7 +147,8 @@ print("> THANKS, SEE YOU AGAIN SOON!")
 print("> ---------------------------------")
 
 
-#email
+
+#email, Krish was a huge help here too!
 email_choice = input("Do you want your receipt to be emailed to you? Please indicate 'yes' or 'no': ")
 email_choice.lower()
 

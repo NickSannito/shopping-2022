@@ -36,7 +36,7 @@ python shopping_cart.py
 
 - Once all of the items in the cart have been entered, type 'done' (the app should be able to handle any pattern of caps/lowercase letters)
 
-- Based on the inputed product identifiers, a receipt including the selected products, their prices, the product subtotal, taxes, and the total price will be generated. 
+- Based on the imputed product identifiers, a receipt including the selected products, their prices, the product subtotal, taxes, and the total price will be generated. 
 
 
 ## Configuring Tax Rate 
